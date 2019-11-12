@@ -25,7 +25,7 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div className="login-container">
+            <form className="login-container">
                 <div className="form-group">
                     <label>User Name:</label>
                     <input type="text" className="form-control" name="userName" onChange={this.handleChange} />
@@ -39,7 +39,7 @@ export default class Login extends React.Component {
                         <input className="form-check-input" type="checkbox" name="rememberFlag" onChange={this.handleChange} /> Remember me</label>
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={this.login}>Submit</button>
-            </div>
+            </form>
         );
 
     }

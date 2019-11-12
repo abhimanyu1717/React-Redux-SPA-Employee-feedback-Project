@@ -12,8 +12,22 @@ code {
     monospace;
 }
 .login-container{
-  width: 500px;
+  width: 600px;
   margin:0px auto;
   padding: 40px;
  border: 2px solid black;
+}
+.feedback-container{
+  margin-top: 50px;
+  max-width: 600px;
+}
+.feedback-container ul li {
+  display:inline;
+  padding-right: 32px;
+}
+.feedback-container button {
+  margin: 0px 20px 0px 20px;
+}
+.container-border {
+  border: 1px solid  #737373;
 }
