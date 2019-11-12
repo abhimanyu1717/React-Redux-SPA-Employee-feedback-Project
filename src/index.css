@@ -15,16 +15,23 @@ code {
   width: 600px;
   margin:0px auto;
   padding: 40px;
- border: 2px solid black;
+ border: 2px solid #737373;
 }
 .feedback-container{
   margin-top: 50px;
-  max-width: 600px;
+}
+.feedback-container form{
+  max-width: 400px;
+}
+.feedback-container ul{
+  margin-left: -25px;
+  padding-top: 15px;
 }
 .feedback-container ul li {
   display:inline;
-  padding-right: 32px;
+  padding-right: 20px;
 }
+
 .feedback-container button {
   margin: 0px 20px 0px 20px;
 }
