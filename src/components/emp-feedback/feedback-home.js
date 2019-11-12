@@ -1,16 +1,30 @@
 import React from 'react';
 import FeedBackForm from './../emp-feedback/feedback-form';
+import FeedBackList from './../emp-feedback/feedback-list';
 export default class FeedBackHome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            'showFeedBackForm': true,
+           'showFeedBackList': false
         };
         this.saveFeedBack = this.saveFeedBack.bind(this); 
+        this.showFormAndListComponent = this.showFormAndListComponent.bind(this);
     }
 
     saveFeedBack = (e) => {
         console.log('saveFeedBack -', e);
+    }
+    showFormAndListComponent(event){
+        event.preventDefault(); 
+      if(event.target.name === 'form') {
+        this.setState({showFeedBackForm: true});
+        this.setState({showFeedBackList: false});
+      } else {
+        this.setState({showFeedBackForm: false});
+        this.setState({showFeedBackList: true});
+      }
+      
     }
 
     render() {
@@ -22,11 +36,13 @@ export default class FeedBackHome extends React.Component {
                 </div>
                 <div className="row">
                     <ul>
-                        <li><a href="">New Feedback</a></li>
-                        <li><a href="">List</a></li>
+                        <li><a href=""  name="form" onClick= {this.showFormAndListComponent} >New Feedback</a></li>
+                        <li><a href=""  name="list" onClick= {this.showFormAndListComponent} >List</a></li>
                     </ul>
                 </div>
-                <FeedBackForm  saveFeedBackCallBack = {this.saveFeedBack}/>
+
+                {this.state.showFeedBackForm && <FeedBackForm  saveFeedBackCallBack = {this.saveFeedBack}/> }
+                {this.state.showFeedBackList && <FeedBackList /> }
             </div>
         );
     }
