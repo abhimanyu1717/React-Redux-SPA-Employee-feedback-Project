@@ -1,6 +1,9 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-
+const userList = [
+    {'name':'abhi', 'password':'abhi12','role':'employee'},
+    {'name':'nam', 'password':'nam12','role':'manager'}
+];
 export default class Login extends React.Component {
      
     constructor() {
@@ -19,9 +22,18 @@ export default class Login extends React.Component {
         console.log(this.state);
     }
 
-    login() {
+    login(event) {
+        event.preventDefault();
         console.log('login==', this.state);
-        this.props.history.push("/feedbackhome")
+        let emp = userList.find( (obj) => {
+            return (obj.name === this.state.userName && obj.password === this.state.password);
+        });
+        if(emp && emp.role === 'employee') {
+            this.props.history.push("/feedbackhome");
+        } else if (emp && emp.role === 'manager') {
+            this.props.history.push("/mangerfeedback");
+            
+        }
     }
     render() {
         return (

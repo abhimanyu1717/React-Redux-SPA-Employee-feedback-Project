@@ -17,9 +17,7 @@ code {
   padding: 40px;
  border: 2px solid #737373;
 }
-.feedback-container{
-  margin-top: 50px;
-}
+
 .feedback-container form{
   max-width: 400px;
 }
