@@ -1,27 +1,38 @@
 import React from 'react';
 import FeedBackForm from './../emp-feedback/feedback-form';
 import FeedBackList from './../emp-feedback/feedback-list';
-const initial_FeedbakList = [
-    { 'empName': 'abhi', 'empId': '11', 'empProject': 'project1', 'comment': 'dff' },
-    { 'empName': 'abhi2', 'empId': '12', 'empProject': 'project2', 'comment': 'dfffaaf' },
-    { 'empName': 'abhi3', 'empId': '13', 'empProject': 'project3', 'comment': 'fasff' },
-    { 'empName': 'abhi4', 'empId': '14', 'empProject': 'project1', 'comment': 'fffa' }
-]
-export default class FeedBackHome extends React.Component {
 
+export default class FeedBackHome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             'showFeedBackForm': true,
             'showFeedBackList': false,
-            'feedbackList': initial_FeedbakList
+            'feedbackList': null
         };
         this.saveFeedBack = this.saveFeedBack.bind(this);
         this.showFormAndListComponent = this.showFormAndListComponent.bind(this);
     }
-
+    componentDidMount() {
+        this.getEmployeeFeedBackList();
+    }
+    getEmployeeFeedBackList() {
+        const loginApiUrl = 'http://localhost:4000/employeesfeedback';
+        fetch(loginApiUrl)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        'feedbackList': result
+                    })
+                },
+                (error) => { }
+            )
+    }
     saveFeedBack = (feedbackObj) => {
         console.log('saveFeedBack -', feedbackObj);
+        const loginApiUrl = 'http://localhost:4000/employeesfeedback';
+        /*
         this.setState(state => {
             const feedbackList = state.feedbackList.concat(feedbackObj);
             return {
@@ -29,7 +40,15 @@ export default class FeedBackHome extends React.Component {
                 showFeedBackForm: false,
                 showFeedBackList: true,
             };
-          });
+        }); 
+        */
+        fetch(loginApiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(feedbackObj)
+        }).then(res => res.json()).then(res => console.log(res));
     }
     showFormAndListComponent(event) {
         event.preventDefault();
@@ -37,6 +56,7 @@ export default class FeedBackHome extends React.Component {
             this.setState({ showFeedBackForm: true });
             this.setState({ showFeedBackList: false });
         } else {
+            this.getEmployeeFeedBackList();
             this.setState({ showFeedBackForm: false });
             this.setState({ showFeedBackList: true });
         }

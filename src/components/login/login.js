@@ -1,11 +1,8 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-const userList = [
-    {'name':'abhi', 'password':'abhi12','role':'employee'},
-    {'name':'nam', 'password':'nam12','role':'manager'}
-];
+
 export default class Login extends React.Component {
-     
+
     constructor() {
         super();
         this.state = {
@@ -24,15 +21,25 @@ export default class Login extends React.Component {
 
     login(event) {
         event.preventDefault();
-        console.log('login==', this.state);
-        let emp = userList.find( (obj) => {
+        const loginApiUrl = 'http://localhost:4000/login';
+        fetch(loginApiUrl)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                   this.redirectToPages(result)
+                },
+                (error) => { }
+            ) 
+    }
+    redirectToPages(_userList){
+        let emp = _userList.find((obj) => {
             return (obj.name === this.state.userName && obj.password === this.state.password);
         });
-        if(emp && emp.role === 'employee') {
+        if (emp && emp.role === 'employee') {
             this.props.history.push("/feedbackhome");
         } else if (emp && emp.role === 'manager') {
             this.props.history.push("/mangerfeedback");
-            
+
         }
     }
     render() {

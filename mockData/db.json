@@ -1,0 +1,21 @@
+{
+ "configuration-of-josn-webserver":[
+   {
+   "command to Install": "npm install -g json-server",
+   "command to start josn-webserver": "json-server --watch db.json",
+   "comand to start josn web server on diffrent port": "json-server -p 4000 db.json",
+   "url to run": "http://localhost:4000"
+   }
+ ],
+  "employeesfeedback": [
+    {"id":1,"empName": "abhi", "empId": "11", "empProject": "project1", "comment": "dff" },
+    {"id":2, "empName": "abhi2", "empId": "12", "empProject": "project2", "comment": "dfffaaf" },
+    {"id":3, "empName": "abhi3", "empId": "13", "empProject": "project3", "comment": "fasff" },
+    {"id":4, "empName": "abhiup", "empId": "14", "empProject": "project1", "comment": "fffa" }
+],
+  "login": [
+	{"name": "abhi", "password": "abhi12", "role": "employee"},
+    {"name": "nam", "password":  "nam12", "role":"manager"}
+	]
+  
+}
