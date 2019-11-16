@@ -38,6 +38,14 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+
+### `npm install -g json-server`
+**Note: for this project. using json-server for mock rest api!**
+1. commannd to install json-server => npm install -g json-server
+2. command to start josn-webserver => json-server --watch db.json
+3. comand to start josn web server on diffrent port => json-server -p 4000 db.json
+4. url to run for caling rest api => http://localhost:4000/login
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
