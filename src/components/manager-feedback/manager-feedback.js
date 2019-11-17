@@ -29,7 +29,7 @@ export default class MangerFeedback extends React.Component {
             <div className="container feedback-container container-border">
                 <div className="row container-border">
                     <div className="col-md-5"><h4>Welcome John</h4></div>
-                    <div className="col-md-7"><h4>Employee Screen</h4></div>
+                    <div className="col-md-7"><h4>Manager Screen</h4></div>
                 </div>
                 <div className="row">
                     <table className="table">
