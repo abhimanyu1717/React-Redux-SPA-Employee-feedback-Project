@@ -1,8 +1,8 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import {connect} from "react-redux";
+import fetchUsers from './../../action/loginAction';
 
-export default class Login extends React.Component {
-
+class Login extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -18,28 +18,29 @@ export default class Login extends React.Component {
         this.setState({ [ev.target.name]: ev.target.value });
         console.log(this.state);
     }
-
+    componentDidUpdate(prevProps) {
+        if(this.props.users.length > 0) {
+            this.redirectToPages(this.props.users);
+        }
+    }
     login(event) {
         event.preventDefault();
-        const loginApiUrl = 'http://localhost:4000/login';
-        fetch(loginApiUrl)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                   this.redirectToPages(result)
-                },
-                (error) => { }
-            ) 
+         this.props.dispatch(fetchUsers);
     }
+    
     redirectToPages(_userList){
         let emp = _userList.find((obj) => {
             return (obj.name === this.state.userName && obj.password === this.state.password);
         });
+        if(emp) {
+            this.props.pushUserDetails();
+        }
         if (emp && emp.role === 'employee') {
             this.props.history.push("/feedbackhome");
         } else if (emp && emp.role === 'manager') {
             this.props.history.push("/mangerfeedback");
-
+        } else {
+            alert('User not found.');
         }
     }
     render() {
@@ -63,3 +64,9 @@ export default class Login extends React.Component {
 
     }
 }
+export default connect((store)=> {
+    return {
+      users:store.users
+    }
+  })(Login);
+
