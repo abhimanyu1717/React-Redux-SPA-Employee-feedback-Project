@@ -2,7 +2,8 @@
 function fetchUsers() {
 
     return function (dispatch) {
-        const URL = "http://localhost:4000/login";
+
+        const URL = "http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/login";
 
         dispatch({ type: 'FETCH_USERS' });
         fetch(URL)

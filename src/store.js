@@ -10,5 +10,5 @@ const initialState = {
     feedBackList:[]
   };
 const middleware = applyMiddleware(thunk, logger);
-const store =  createStore(reducer,initialState, middleware);
+const store =  createStore(reducer, initialState, middleware);
 export default store;

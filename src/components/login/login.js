@@ -19,7 +19,7 @@ class Login extends React.Component {
         console.log(this.state);
     }
     componentDidUpdate(prevProps) {
-        if(this.props.users.length > 0) {
+        if(this.props.users && this.props.users.length > 0) {
             this.redirectToPages(this.props.users);
         }
     }

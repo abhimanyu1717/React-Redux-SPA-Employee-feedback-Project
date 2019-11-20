@@ -17,7 +17,7 @@ export default class FeedBackHome extends React.Component {
         this.getEmployeeFeedBackList();
     }
     getEmployeeFeedBackList() {
-        const loginApiUrl = 'http://localhost:4000/employeesfeedback';
+        const loginApiUrl = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
         fetch(loginApiUrl)
             .then(res => res.json())
             .then(
@@ -31,7 +31,7 @@ export default class FeedBackHome extends React.Component {
     }
     saveFeedBack = (feedbackObj) => {
         console.log('saveFeedBack -', feedbackObj);
-        const loginApiUrl = 'http://localhost:4000/employeesfeedback';
+        const loginApiUrl = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
         /*
         this.setState(state => {
             const feedbackList = state.feedbackList.concat(feedbackObj);
