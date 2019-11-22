@@ -7,8 +7,7 @@ export default class FeedBackHome extends React.Component {
         super(props);
         this.state = {
             'showFeedBackForm': true,
-            'showFeedBackList': false,
-            'feedbackList': []
+            'showFeedBackList': false
         };
         this.saveFeedBack = this.saveFeedBack.bind(this);
         this.showFormAndListComponent = this.showFormAndListComponent.bind(this);

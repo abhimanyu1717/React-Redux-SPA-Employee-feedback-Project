@@ -5,7 +5,6 @@ import { fetchFeedBackList } from './../../action/feedbackAction';
 class FeedBackList extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchFeedBackList());
-        // this.getEmployeeFeedBackList();
     }
 
     componentDidUpdate() {
@@ -25,23 +24,21 @@ class FeedBackList extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.feedbackList.map((obj, index) => (
-                        <TableRow key={index} feedBack={obj} />
-                    ))}
+                    {
+                        this.props.feedbackList.map((obj, index) => (
+                            <TableRow key={index} feedBack={obj} />
+                        ))
+                    }
                 </tbody>
             </table>
         );
     }
 }
-function mapStateToProps(state) {
-    if (state.feedBack && state.feedBack.feedBackList) {
-        return { feedbackList: state.feedBack.feedBackList }
-    }
-}
-export default connect(mapStateToProps)(FeedBackList);
 
+/***  component for rendering each row ***/
 class TableRow extends React.Component {
     render() {
+        { console.log('redered called') }
         return (
             <tr>
                 <td>{this.props.feedBack.empName}</td>
@@ -52,3 +49,12 @@ class TableRow extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    if (state.feedBack && state.feedBack.feedBackList) {
+        return { feedbackList: state.feedBack.feedBackList }
+    } else {
+       return {feedbackList:[]};
+    } 
+}
+export default connect(mapStateToProps)(FeedBackList);
