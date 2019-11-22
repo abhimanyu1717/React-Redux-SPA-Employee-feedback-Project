@@ -18,9 +18,10 @@ class Login extends React.Component {
         this.setState({ [ev.target.name]: ev.target.value });
         console.log(this.state);
     }
-    componentDidUpdate(prevProps) {
-        if(this.props.users && this.props.users.length > 0) {
-            this.redirectToPages(this.props.users);
+    
+    componentDidUpdate() {
+        if(this.props.store.login && this.props.store.login.users && this.props.store.login.users.length > 0) {
+            this.redirectToPages(this.props.store.login.users);
         }
     }
     login(event) {
@@ -66,7 +67,7 @@ class Login extends React.Component {
 }
 export default connect((store)=> {
     return {
-      users:store.users
+        store:store
     }
   })(Login);
 

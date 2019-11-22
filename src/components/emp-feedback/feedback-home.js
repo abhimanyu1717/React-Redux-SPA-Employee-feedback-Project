@@ -8,27 +8,13 @@ export default class FeedBackHome extends React.Component {
         this.state = {
             'showFeedBackForm': true,
             'showFeedBackList': false,
-            'feedbackList': null
+            'feedbackList': []
         };
         this.saveFeedBack = this.saveFeedBack.bind(this);
         this.showFormAndListComponent = this.showFormAndListComponent.bind(this);
     }
-    componentDidMount() {
-        this.getEmployeeFeedBackList();
-    }
-    getEmployeeFeedBackList() {
-        const loginApiUrl = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
-        fetch(loginApiUrl)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        'feedbackList': result
-                    })
-                },
-                (error) => { }
-            )
-    }
+    
+    
     saveFeedBack = (feedbackObj) => {
         console.log('saveFeedBack -', feedbackObj);
         const loginApiUrl = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
@@ -56,7 +42,6 @@ export default class FeedBackHome extends React.Component {
             this.setState({ showFeedBackForm: true });
             this.setState({ showFeedBackList: false });
         } else {
-            this.getEmployeeFeedBackList();
             this.setState({ showFeedBackForm: false });
             this.setState({ showFeedBackList: true });
         }

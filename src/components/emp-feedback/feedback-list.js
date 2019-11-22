@@ -1,6 +1,18 @@
 import React from 'react'
+import { connect } from "react-redux";
+import { fetchFeedBackList } from './../../action/feedbackAction';
 
-export default class FeedBackList extends React.Component {
+class FeedBackList extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(fetchFeedBackList());
+        // this.getEmployeeFeedBackList();
+    }
+
+    componentDidUpdate() {
+        if (this.props.feedBackList) {
+            console.log("FeedBackList componentDidUpdate =====", this.props.feedBackList);
+        }
+    }
     render() {
         return (
             <table className="table">
@@ -13,14 +25,20 @@ export default class FeedBackList extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.feedbackList.map((obj,index) => (
-                       <TableRow key={index} feedBack={obj} />
+                    {this.props.feedbackList.map((obj, index) => (
+                        <TableRow key={index} feedBack={obj} />
                     ))}
                 </tbody>
             </table>
         );
     }
 }
+function mapStateToProps(state) {
+    if (state.feedBack && state.feedBack.feedBackList) {
+        return { feedbackList: state.feedBack.feedBackList }
+    }
+}
+export default connect(mapStateToProps)(FeedBackList);
 
 class TableRow extends React.Component {
     render() {

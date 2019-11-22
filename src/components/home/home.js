@@ -6,10 +6,10 @@ import {connect} from "react-redux";
 import FeedBackHome from './../emp-feedback/feedback-home'
 import Login from './../login/login'
 import MangerFeedback from './../manager-feedback/manager-feedback';
-import {fetchUsers} from './../../action/loginAction';
+import {homeAddAction} from './../../action/home-action';
 
 
-export default class Home extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +17,10 @@ export default class Home extends React.Component {
         };
     }
     componentWillMount(){
-        
+        this.props.dispatch(homeAddAction());
+    }
+    componentDidUpdate() {
+        console.log("HOME COMPONENT componentDidUpdate ==================>" , this.props.store);
     }
     pushUserDetails() {
      // alert('called');
@@ -35,3 +38,8 @@ export default class Home extends React.Component {
         );
     }
 }
+export default connect((store)=> {
+    return {
+      store:store
+    }
+  })(Home);

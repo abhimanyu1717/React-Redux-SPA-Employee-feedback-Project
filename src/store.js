@@ -3,7 +3,7 @@ import {applyMiddleware, createStore}  from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-import reducer from "./reducer/loginReducer";
+import reducer from "./reducer/index";
 
 const initialState = {
     users: [],
