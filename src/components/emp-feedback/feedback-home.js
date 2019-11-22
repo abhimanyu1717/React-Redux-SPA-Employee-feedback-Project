@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from "react-redux";
 import FeedBackForm from './../emp-feedback/feedback-form';
 import FeedBackList from './../emp-feedback/feedback-list';
 
-export default class FeedBackHome extends React.Component {
+class FeedBackHome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,21 +13,12 @@ export default class FeedBackHome extends React.Component {
         this.saveFeedBack = this.saveFeedBack.bind(this);
         this.showFormAndListComponent = this.showFormAndListComponent.bind(this);
     }
-    
-    
+
+
     saveFeedBack = (feedbackObj) => {
         console.log('saveFeedBack -', feedbackObj);
         const loginApiUrl = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
-        /*
-        this.setState(state => {
-            const feedbackList = state.feedbackList.concat(feedbackObj);
-            return {
-                feedbackList,
-                showFeedBackForm: false,
-                showFeedBackList: true,
-            };
-        }); 
-        */
+    
         fetch(loginApiUrl, {
             method: 'POST',
             headers: {
@@ -51,7 +43,7 @@ export default class FeedBackHome extends React.Component {
         return (
             <div className="container feedback-container container-border">
                 <div className="row container-border">
-                    <div className="col-md-5"><h4>Welcome John</h4></div>
+                    <div className="col-md-5"><h4>{this.props.loginUser.name}</h4></div>
                     <div className="col-md-7"><h4>Employee Screen</h4></div>
                 </div>
                 <div className="row">
@@ -67,3 +59,12 @@ export default class FeedBackHome extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    if (state.login && state.login.users && state.login.users.length > 0) {
+        return { loginUser: state.login.users[0] }
+    } else {
+        return { loginUser: {} };
+    }
+}
+export default connect(mapStateToProps)(FeedBackHome);

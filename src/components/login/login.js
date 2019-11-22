@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import fetchUsers from './../../action/loginAction';
+import {fetchUsers} from './../../action/loginAction';
 
 class Login extends React.Component {
     constructor() {
@@ -26,16 +26,11 @@ class Login extends React.Component {
     }
     login(event) {
         event.preventDefault();
-         this.props.dispatch(fetchUsers);
+         this.props.dispatch(fetchUsers(this.state));
     }
     
     redirectToPages(_userList){
-        let emp = _userList.find((obj) => {
-            return (obj.name === this.state.userName && obj.password === this.state.password);
-        });
-        if(emp) {
-            this.props.pushUserDetails();
-        }
+        const emp = _userList[0];
         if (emp && emp.role === 'employee') {
             this.props.history.push("/feedbackhome");
         } else if (emp && emp.role === 'manager') {

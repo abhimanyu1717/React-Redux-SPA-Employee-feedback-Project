@@ -1,12 +1,10 @@
-
-function fetchUsers() {
+import { urlConfig } from './../config/url-config';
+export const fetchUsers = function fetchUsers(_userDetails) {
 
     return function (dispatch) {
-
-        const URL = "http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/login";
-
+        const URL = urlConfig().login;
         dispatch({ type: 'FETCH_USERS' });
-        fetch(URL)
+        fetch(URL + "?name=" + _userDetails.userName + "&password=" + _userDetails.password)
             .then(response => {
                 return response.json();
             })
@@ -18,4 +16,4 @@ function fetchUsers() {
             });
     }
 }
-export default fetchUsers();
+// export default fetchUsers();

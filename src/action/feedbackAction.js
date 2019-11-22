@@ -1,9 +1,8 @@
-export const fetchFeedBackList= function () {
-
+import { urlConfig } from './../config/url-config';
+export const fetchFeedBackList = function () {
     return function (dispatch) {
-        const URL = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
-
-        dispatch({ type: 'FETCH_FEEDBACK'});
+        const URL = urlConfig().empFeedBack;
+        dispatch({ type: 'FETCH_FEEDBACK' });
         fetch(URL)
             .then(response => {
                 return response.json();

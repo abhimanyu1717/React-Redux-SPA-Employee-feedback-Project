@@ -22,15 +22,12 @@ class Home extends React.Component {
     componentDidUpdate() {
         console.log("HOME COMPONENT componentDidUpdate ==================>" , this.props.store);
     }
-    pushUserDetails() {
-     // alert('called');
-    }
     render() {
         return (
             <Router>
               <Switch>
                   <Route exact path='/'
-                  render={ (routeProps) => (<Login {...routeProps} pushUserDetails= {this.pushUserDetails}/>)} />
+                  render={ (routeProps) => (<Login {...routeProps} />)} />
                   <Route path='/feedbackhome' component={FeedBackHome} />
                   <Route path='/mangerfeedback' component={MangerFeedback} />
               </Switch>
