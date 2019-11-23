@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import FeedBackForm from './../emp-feedback/feedback-form';
 import FeedBackList from './../emp-feedback/feedback-list';
-
+import { urlConfig } from './../../config/url-config';
 class FeedBackHome extends React.Component {
     constructor(props) {
         super(props);
@@ -17,12 +17,12 @@ class FeedBackHome extends React.Component {
 
     saveFeedBack = (feedbackObj) => {
         console.log('saveFeedBack -', feedbackObj);
-        const loginApiUrl = 'http://my-json-server.typicode.com/abhimanyu1717/employeeFeedBackDB/employeesfeedback';
+        const loginApiUrl = urlConfig().empFeedBack
     
         fetch(loginApiUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json; charset=UTF-8'
             },
             body: JSON.stringify(feedbackObj)
         }).then(res => res.json()).then(res => console.log(res));
